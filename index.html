@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>690-9-10-11-12 Parsel Ucuş + Sunum</title>
+<title>7001-5 Parsel Ucuş + Sunum</title>
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -110,10 +110,10 @@ body {
 
 #info-panel {
   position: absolute;
-  bottom: 50px;
+  bottom: 67px;
   left: 15px;
 
-  width: 60vw;
+  width: 45vw;
   max-width: 220px;
 
   background: rgba(0,60,150,0.75);
@@ -160,10 +160,10 @@ body {
 
 #contact-box {
   position: absolute;
-  bottom: 200px;
+  bottom: 150px;
   left: 15px;
 
-  width: 60vw;
+  width: 45vw;
   max-width: 220px;
 
   background: rgba(0,0,0,0.8);
@@ -442,10 +442,10 @@ const map = new mapboxgl.Map({
     layers: [],
     glyphs: 'https://api.mapbox.com/fonts/v1/mapbox/{fontstack}/{range}.pbf?access_token=' + mapboxgl.accessToken
   },
-  center: [33.977918, 38.405989],
+  center: [33.994695, 38.384635],
   zoom: 15.5,
   pitch: 0,
-  bearing: 10,
+  bearing: 320,
   attributionControl: false,
   renderWorldCopies: false   // 🔥 EKLE
 });
@@ -461,28 +461,117 @@ let rotation;
 /* ---------------- ROUTE ---------------- */
 
 const route=[
-[33.977918, 38.405989],
-[33.978288, 38.414139],
-[33.953977, 38.437422],
-[33.956999, 38.443791]
+[33.994695, 38.384635],
+[33.985723, 38.397152],
+[33.983647, 38.398014]
 ];
 
 
-const hasdonerLabelGeoJSON = {
+const agacliLabelGeoJSON = {
   type: "FeatureCollection",
   features: [
     {
       type: "Feature",
       geometry: {
         type: "Point",
-        coordinates: [33.977478, 38.407076]
+        coordinates: [33.993799, 38.385924]
       },
       properties: {
-        title: "Has Döner"
+        title: "Ağaçlı Tesisleri"
       }
     }
   ]
 };
+agacliLabelGeoJSON.features.forEach(feature => {
+  new mapboxgl.Marker({ color: "blue", scale:0.7 })
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+
+
+const nesibeLabelGeoJSON = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [33.992139, 38.388462]
+      },
+      properties: {
+        title: "Nesime Aydın Yıldızlar Okulu"
+      }
+    }
+  ]
+};
+nesibeLabelGeoJSON.features.forEach(feature => {
+  new mapboxgl.Marker({ color: "blue", scale:0.7 })
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+
+const yenillerLabelGeoJSON = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [33.986697, 38.395939]
+      },
+      properties: {
+        title: "Yeniller Renault-Dacia"
+      }
+    }
+  ]
+};
+yenillerLabelGeoJSON.features.forEach(feature => {
+  new mapboxgl.Marker({ color: "blue", scale:0.7 })
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+
+const karadenizLabelGeoJSON = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [33.986158, 38.396759]
+      },
+      properties: {
+        title: "Karadeniz Pide"
+      }
+    }
+  ]
+};
+karadenizLabelGeoJSON.features.forEach(feature => {
+  new mapboxgl.Marker({ color: "blue", scale:0.7 })
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+
+const istikbalLabelGeoJSON = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [33.985654, 38.395193]
+      },
+      properties: {
+        title: "İstikbal Nalbantoğlu"
+      }
+    }
+  ]
+};
+istikbalLabelGeoJSON.features.forEach(feature => {
+  new mapboxgl.Marker({ color: "blue", scale:0.7 })
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
 
 
 map.on("load",()=>{
@@ -517,57 +606,13 @@ map.addSource("parsel", {
         geometry: {
           type: "Polygon",
           coordinates: [[
-            [33.956960, 38.444210],
-            [33.957380, 38.444080],
-            [33.957320, 38.443990],
-            [33.957300, 38.443950],
-            [33.956890, 38.444080],
-			[33.956960, 38.444210]
-          ]]
-        }
-      },
-      {
-        type: "Feature",
-        properties: { "PARSEL_NO": "690 / 10" },
-        geometry: {
-          type: "Polygon",
-          coordinates: [[
-            [33.957030, 38.444350],
-            [33.957460, 38.444220],
-            [33.957420, 38.444160],
-            [33.957380, 38.444080],
-            [33.956960, 38.444210],
-			[33.957030, 38.444350]
-          ]]
-        }
-      },
-	  {
-        type: "Feature",
-        properties: { "PARSEL_NO": "690 / 11" },
-        geometry: {
-          type: "Polygon",
-          coordinates: [[
-            [33.957090, 38.444480],
-            [33.957530, 38.444350],
-            [33.957520, 38.444320],
-            [33.957460, 38.444220],
-            [33.957030, 38.444350],
-			[33.957090, 38.444480]
-          ]]
-        }
-      },
-	  {
-        type: "Feature",
-        properties: { "PARSEL_NO": "690 / 12" },
-        geometry: {
-          type: "Polygon",
-          coordinates: [[
-            [33.957160, 38.444610],
-            [33.957500, 38.444510],
-            [33.957610, 38.444470],
-            [33.957530, 38.444350],
-            [33.957090, 38.444480],
-			[33.957160, 38.444610]
+            [33.983052, 38.398267],
+            [33.983624, 38.398521],
+            [33.983637, 38.398503],
+            [33.983713, 38.398380],
+            [33.983763, 38.398273],
+			[33.983123, 38.398045],
+			[33.983052, 38.398267]
           ]]
         }
       }
@@ -663,29 +708,125 @@ if (!map.getLayer('parcels-labels')) {
       'text-allow-overlap': true
     },
     paint: {
-      'text-color': '#333333',          // Yumuşak koyu gri
+      'text-color': '#000',          // Yumuşak koyu gri
       'text-halo-color': '#ffffff',    // Beyaz kenarlık
-      'text-halo-width': 1.5,
+      'text-halo-width': 2.5,
       'text-opacity': 0                // 👈 Başlangıçta görünmesin
     }
   });
 }
 
 
-/* HAS DÖNER LABEL */
-map.addSource("hasdoner-label", {
+/* AĞAÇLI TESİSLERİ LABEL */
+map.addSource("agacli-label", {
   type: "geojson",
-  data: hasdonerLabelGeoJSON
+  data: agacliLabelGeoJSON
 });
 
 map.addLayer({
-  id: "hasdoner-label-layer",
+  id: "agacli-label-layer",
   type: "symbol",
-  source: "hasdoner-label",
+  source: "agacli-label",
   layout: {
     "text-field": ["get", "title"],
-    "text-size": 15,
-    "text-offset": [0, -1],
+    "text-size": 13,
+    "text-offset": [0, -3],
+    "text-anchor": "top"
+  },
+  paint: {
+  "text-color": "#FFF",
+  "text-halo-color": "rgba(0,0,0,0.9)",
+  "text-halo-width": 2,
+  "text-halo-blur": 0.8
+  }
+});
+
+/* NESİBE AYDIN OKULU LABEL */
+map.addSource("nesibe-label", {
+  type: "geojson",
+  data: nesibeLabelGeoJSON
+});
+
+map.addLayer({
+  id: "nesibe-label-layer",
+  type: "symbol",
+  source: "nesibe-label",
+  layout: {
+    "text-field": ["get", "title"],
+    "text-size": 13,
+    "text-offset": [0, -4],
+    "text-anchor": "top"
+  },
+  paint: {
+  "text-color": "#FFF",
+  "text-halo-color": "rgba(0,0,0,0.9)",
+  "text-halo-width": 2,
+  "text-halo-blur": 0.8
+  }
+});
+
+/* YENİLLER RENAULT-DACİA LABEL */
+map.addSource("yeniller-label", {
+  type: "geojson",
+  data: yenillerLabelGeoJSON
+});
+
+map.addLayer({
+  id: "yeniller-label-layer",
+  type: "symbol",
+  source: "yeniller-label",
+  layout: {
+    "text-field": ["get", "title"],
+    "text-size": 13,
+    "text-offset": [0, -3],
+    "text-anchor": "top"
+  },
+  paint: {
+  "text-color": "#FFF",
+  "text-halo-color": "rgba(0,0,0,0.9)",
+  "text-halo-width": 2,
+  "text-halo-blur": 0.8
+  }
+});
+
+/* KARADENİZ PİDE LABEL */
+map.addSource("karadeniz-label", {
+  type: "geojson",
+  data: karadenizLabelGeoJSON
+});
+
+map.addLayer({
+  id: "karadeniz-label-layer",
+  type: "symbol",
+  source: "karadeniz-label",
+  layout: {
+    "text-field": ["get", "title"],
+    "text-size": 13,
+    "text-offset": [0, -3],
+    "text-anchor": "top"
+  },
+  paint: {
+  "text-color": "#FFF",
+  "text-halo-color": "rgba(0,0,0,0.9)",
+  "text-halo-width": 2,
+  "text-halo-blur": 0.8
+  }
+});
+
+/* İSTİKBAL NALBANTOĞLU LABEL */
+map.addSource("istikbal-label", {
+  type: "geojson",
+  data: istikbalLabelGeoJSON
+});
+
+map.addLayer({
+  id: "istikbal-label-layer",
+  type: "symbol",
+  source: "istikbal-label",
+  layout: {
+    "text-field": ["get", "title"],
+    "text-size": 13,
+    "text-offset": [0, -3],
     "text-anchor": "top"
   },
   paint: {
@@ -757,12 +898,31 @@ let currentDroneRotation = null;
 let lastSpeedTime = null;
 let lastSpeedPosition = null;
 
+// 🔥 GLOBAL ALTITUDE FONKSİYONU
+function getAltitudeFromZoom(zoom) {
+  return Math.max(30, Math.round(3000 / Math.pow(2, zoom - 10)));
+}
+
+// 🔥 PANEL ALTITUDE GÜNCELLEME (HER ZOOM/MOVE'DA ÇALIŞIR)
+function updateAltitude() {
+  const zoom = map.getZoom();
+  const altitude = getAltitudeFromZoom(zoom);
+
+  const el = document.getElementById("altitudeInfo");
+  if (el) {
+    el.innerText = "Altitude: ~" + Math.round(altitude) + " m";
+  }
+}
+
+// 🔥 KRİTİK SATIR (SORUNU ÇÖZEN)
+map.on("move", updateAltitude);
+
 function startSmoothRoute() {
 
   const zoomElement = document.getElementById("zoom-level");
   if (zoomElement) zoomElement.classList.add("hide");
 
-  const totalDuration = 30000;
+  const totalDuration = 20000;
   const climbDuration = 4000;
   const targetPitch = 15;
 
@@ -1019,7 +1179,7 @@ function startSmoothRoute() {
 
 function startRotation() {
 
-  const geoCenter = [33.957241, 38.444286];
+  const geoCenter = [33.983379, 38.39825];
 
   if (rotation) cancelAnimationFrame(rotation);
 
@@ -1158,13 +1318,10 @@ function fadeInParcelLabel() {
 async function startTextFlow(){
 
   const slogans = [
-    "Topakkaya Medeni Seyir Tepesinde",
-    "Yapılan lüks villa sitelerinin üstünde",
-    "Konut Alanı İmarlı",
-    "% 60 Kullanımlı",
-    "Farklı metrekarelerde",
-    "Konum olarak tam tepe olup tüm şehir ayağınızın altında",
-    "İster Yatırımlık ister Villa için uygun",
+    "Somuncubaba Mahallesinde",
+    "Konut Ticaret Alanı İmarlı",
+    "1635 metrekare",
+    "Uygun Fiyat İmkanı",
   ];
 
   const sloganBox = document.getElementById("slogan");
