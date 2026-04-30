@@ -574,6 +574,8 @@ istikbalLabelGeoJSON.features.forEach(feature => {
 });
 
 
+
+
 map.on("load",()=>{
 
 map.addSource('google-tiles', {
@@ -836,6 +838,129 @@ map.addLayer({
   "text-halo-blur": 0.8
   }
 });
+
+/* YOL LABEL */
+
+const yolGeoJSON = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "LineString",
+        coordinates: [
+          [33.984216, 38.397018],
+          [33.992198, 38.402227]
+        ]
+      },
+      properties: {
+        title: "Yunus Emre Mah Yolu"
+      }
+    }
+  ]
+};
+
+// SOURCE
+map.addSource("yol", {
+  type: "geojson",
+  data: yolGeoJSON,
+  lineMetrics: true   // 🔥 KRİTİK
+});
+
+// OPTIONAL: görünür yol çizgisi (yazı daha stabil olur)
+
+
+// LABEL LAYER
+map.addLayer({
+  id: "yol-label",
+  type: "symbol",
+  source: "yol",
+
+  layout: {
+    "symbol-placement": "line",
+    "text-field": ["get", "title"],
+    "text-size": 14,
+
+    // 🔥 KRİTİK: yazıyı başlangıca yaklaştırır
+    "symbol-spacing": 200,
+
+    // sadece tek label üretir
+    "text-max-angle": 90,
+
+    "text-rotation-alignment": "map",
+    "text-keep-upright": true,
+
+    "text-allow-overlap": true,
+    "text-ignore-placement": true
+  },
+
+  paint: {
+    "text-color": "#ffa500",
+    "text-halo-color": "#000",
+    "text-halo-width": 2
+  }
+});
+
+/* YOL2 LABEL */
+
+const yolGeoJSON2 = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "LineString",
+        coordinates: [
+          [33.985149, 38.397245],
+          [33.980278, 38.404089]
+        ]
+      },
+      properties: {
+        title: "Aksaray - Ankara Yolu"
+      }
+    }
+  ]
+};
+
+// SOURCE
+map.addSource("yol2", {
+  type: "geojson",
+  data: yolGeoJSON2,
+  lineMetrics: true
+});
+
+// LABEL LAYER
+map.addLayer({
+  id: "yol-label-2",
+  type: "symbol",
+  source: "yol2",
+
+  layout: {
+    "symbol-placement": "line",
+    "text-field": ["get", "title"],
+    "text-size": 14,
+    "symbol-spacing": 200,
+    "text-max-angle": 90,
+    "text-rotation-alignment": "map",
+    "text-keep-upright": true,
+    "text-allow-overlap": true,
+    "text-ignore-placement": true
+  },
+
+  paint: {
+    "text-color": "#ffa500",
+	"text-halo-color": "rgba(0,0,0,0.7)",
+	"text-halo-width": 2
+  }
+});
+
+
+
+
+
+
+
+
 
 
 
@@ -1474,7 +1599,7 @@ async function startTextFlow(){
 
 function showCenterTitle() {
   const title = document.getElementById("hero-center-title");
-  const textLines = ["Satılık Parseller"]; // 2 satır
+  const textLines = ["Satılık Parsel"]; // 2 satır
 
   title.innerHTML = "";
 
